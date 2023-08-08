@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}      
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Anton', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            position: absolute;
+            right: 7.5cm;
+            top: 2cm;
+            font-size: 29px;
+            display: flex;
+            z-index: 2;
+            text-decoration: none;
+        }
+        
+        .Zeile {
+        text-decoration: none;
+        color: snow;
+        margin-left: 16px;
+        position: relative; /* Wir setzen die Position auf relativ, um das Pseudoelement darin zu positionieren */
+    }
+    
+    .Zeile::before {
+        content: ""; /* Erzeugt das Pseudoelement für den Strich */
+        position: absolute;
+        bottom: -2px; /* Positionierung des Strichs unter dem Link */
+        left: 0;
+        width: 0; /* Startbreite des Strichs */
+        height: 2px; /* Strichdicke */
+        background-color: #D81F5D; /* Farbe des Strichs */
+        transition: width 0.3s ease-in-out; /* Übergangseffekt für die Breite des Strichs */
+    }
+    
+    .Zeile:hover::before {
+        width: 100%; /* Breite des Strichs beim Hovern */
+    }
+        
+        .Zeile:hover {
+            text-decoration: wavy;
+            color: #D81F5D;
+        }
+        
+        .Logo {
+            position: absolute;
+            left: 60px;
+            top: 20px;
+            width: 150px;
+            z-index: 2;
+            scale: 170%;
+        }
+        
+        .cover-image {
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* Set the height to 100vh to fill the entire viewport */
+    object-fit: cover;
+    z-index: 1;
+}
+        
+        .next-button {
+            position: absolute;
+            top: 12cm;
+            right: 4cm;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.084);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            z-index: 2;
+            
+        }
+        
+        .next-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-image: url("Bilder/Pfeil-2.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            scale: 200%;
+        }
+        
+        .headline {
+        position: absolute;
+        left: 50%; /* Verschiebung um die Hälfte der Breite */
+        top: 50%; /* Verschiebung um die Hälfte der Höhe */
+        transform: translate(-50%, -50%); /* Zentrierungstrick */
+        color: white;
+        font-size: 50px;
+        width: 600px;
+        text-align: center; /* Text in der Mitte ausrichten */
+        z-index: 2;
+        text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+    }
+        
+        .arrow-button {
+            position: absolute;
+            top: 20cm;
+            left: 3cm;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.084);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .arrow-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-image: url("Bilder/Pfeil.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .andere {
+            color: #D81F5D;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <a class="Zeile" href="">Home</a>
+        <a class="Zeile" href="">Über uns</a>
+        <a class="Zeile" href="">Wissenswertes</a>
+        <a class="Zeile" href="">Technik</a>
+        <a class="Zeile" href="">Preise</a>
+        <a class="Zeile" href="">Bolgeinträge</a>
+        <a class="Zeile" href="">Kontakt</a>
+    </div>
+    
+    <img class="Logo" src="/Bilder/FBM.png">
+    
+    <div class="cover-image">
+        <img src="/Bilder/Background.jpg" class="Vogel" id="cover-img">
+        <div class="button-container">
+            <button class="next-button" onclick="changeCover()"></button>
+        </div>
+    </div>
+    
+    <h1 class="headline">
+        Drohnenvideos und Fotos auf <span class="andere">höchster Qualität</span>
+    </h1>
+    <p>Mika ist cool</p>
+    
+    <button class="arrow-button" onclick="changeCover()"></button>
+    
+    <script>
+        var images = ["/Bilder/Background.jpg", "/Bilder/Vogel.jpg"];
+        var currentImageIndex = 0;
+        
+        function changeCover() {
+            currentImageIndex++;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            document.getElementById("cover-img").src = images[currentImageIndex];
+        }
+    </script>
+</body>
+</html>
